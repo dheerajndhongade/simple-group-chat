@@ -3,17 +3,17 @@ let router = express.Router();
 
 router.get("/login", (req, res, next) => {
   res.send(
-    `<form action="/" method="POST"><input type="text" name="title"><button type="submit">Login</button></form>
+    `<form onsubmit="formHandler(event)" action="/message" method="POST"><input id="username" type="text" name"title"><button type="submit">Login</button></form>
     <script>
-      document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        let title = document.getElementById('title').value;
-        localStorage.setItem('title', title);
-        console.log(title)
-        console.log("dfghj")
-      });
+    function formHandler(event){
+    let username=document.getElementById("username").value;
+        localStorage.setItem("username",username )
+    }
     </script>`
   );
+});
+router.post("/message", (req, res, next) => {
+  res.redirect("/");
 });
 
 module.exports = router;
